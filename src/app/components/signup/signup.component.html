@@ -1,0 +1,35 @@
+
+<div class="col-md-8 mx-auto container bg-light p-5 rounded-3" >
+  <p class="text-center font-white h3 bg-primary text-white p-3 rounded-3">Signup</p>
+
+  <form class="mx-auto bg-light container row p-3" [formGroup]="signupForm" (ngSubmit)="onSubmitt()">
+   
+          
+        <mat-form-field class="mx-auto  mb-3">
+          <label class="text-primary">Name</label>
+          <input matInput type="text" placeholder="Mohammed" formControlName="name">
+          <mat-hint *ngIf="signupForm.controls['name'].errors">Name is required</mat-hint>
+        </mat-form-field>
+      <mat-form-field class="mx-auto  mb-3">
+        <label class="text-primary">Email address</label>
+        <input matInput type="email" placeholder="abc@y.com" formControlName="email">
+        <mat-hint *ngIf="signupForm.controls['email'].errors">Email is required</mat-hint>
+    </mat-form-field>
+    <mat-form-field class="mx-auto  mb-3">
+      <label class="text-primary">Password</label>
+      <input matInput type="password" placeholder="pass" formControlName="password">
+      <mat-hint *ngIf="signupForm.controls['password'].errors">Password is required</mat-hint>
+  </mat-form-field>
+
+  <button mat-flat-button class="mx-auto  mb-3" color="primary" [disabled]="!signupForm.valid" type="submit">Signup</button>
+
+  </form>
+
+  
+</div>
+
+
+
+
+
+
