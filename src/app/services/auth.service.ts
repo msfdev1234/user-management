@@ -22,6 +22,7 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('name');
     this.router.navigate(['/']);
     this.toastr.info("Logout successfull","",{
       timeOut:2000,
@@ -32,8 +33,16 @@ export class AuthService {
     localStorage.setItem("token", TokenValue)
   }
 
+  storeCurrentUser(Name:string){
+    localStorage.setItem("name", Name)
+  }
+
   getToken(){
     return localStorage.getItem("token");
+  }
+
+  getCurrentUserName(){
+    return localStorage.getItem("name");
   }
 
   isLoggedIn():boolean{

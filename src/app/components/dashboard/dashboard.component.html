@@ -1,40 +1,39 @@
-
-
-
-
-<div class="row justify-content-center">
-    <div class="text-end">
-
-        <button (click)="logOut()" class="btn btn-danger mx-5 my-2">Log out</button>
-    </div>
-    <div class="col-6">
-        <div class="row">
-         
-            <p class="row justify-content-center h2 mx-auto">dashboard works!</p>
-
-
+<!-- DASHBOARD TITLE -->
+<div class="container bg-info p-3 rounded">
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-between">
+            <div>
+                <h1 class="display-6 lead text-white my-auto">Welcome, {{currentUser}}</h1>
+                <span class="text-black my-auto px-0.5">Dashboard</span>
+            </div>
+            <button (click)="logOut()" class="btn btn-danger my-auto">Log out</button>
         </div>
-
-    
- 
-
-     
-
-        <table  class="table table-bordered ">
-            <thead class="thead-dark">
-                <th scope="col">Id</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users">
-                    <td scope="row">{{user.id}}</td>
-                    <td scope="row">{{user.name}}</td>
-                    <td scope="row">{{user.email}}</td>
-                </tr>
-            </tbody>
-        </table>
-
     </div>
 </div>
 
+<!-- TABLE RESULT -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 p-0 my-2">
+            <mat-card>
+                <mat-card-content class="mat-elevation-z2">
+                    <span class="h5 ">User Details</span>
+                    <table class="table table-bordered my-2 ">
+                        <thead class="thead bg-grey text-dark text-center ">
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users">
+                                <td scope="row">{{user.id}}</td>
+                                <td scope="row">{{user.name}}</td>
+                                <td scope="row">{{user.email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

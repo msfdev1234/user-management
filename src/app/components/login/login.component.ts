@@ -14,15 +14,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  user!:User;
+  user!: User;
   loginForm!: FormGroup;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private auth:AuthService,
+    private auth: AuthService,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.loginForm.invalid) {
+    if (this.loginForm.invalid) {
       return;
     }
 
@@ -41,23 +41,24 @@ export class LoginComponent implements OnInit {
     this.user = new User("", this.loginForm.value.email, this.loginForm.value.password);
 
     this.auth.login(this.user)
-    .subscribe({
-      next:((res: { message: string | undefined; token: any; })=>{
-        this.toastr.success('SUCCESS', res.message, {
-          timeOut: 3000,
-        });
-        
-        this.router.navigate(["dashboard"])
-        this.auth.storeToken(res.token);
-      
-      }),
-    error:(err=>{
-      this.toastr.error('ERROR', "Incorrect login details", {
-        timeOut: 1200,
-      });
-    })
-  })
-    
+      .subscribe({
+        next: ((res: { message: string | undefined; token: any | undefined; name:any; }) => {
+          this.toastr.success('SUCCESS', res.message, {
+            timeOut: 3000,
+          });
+
+          this.router.navigate(["dashboard"])
+          this.auth.storeToken(res.token);
+          this.auth.storeCurrentUser(res.name);
+
+        }),
+        error: (err => {
+          this.toastr.error('ERROR', "Incorrect login details", {
+            timeOut: 1200,
+          });
+        })
+      })
+
   }
 
 }
